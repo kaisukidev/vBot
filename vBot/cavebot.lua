@@ -33,6 +33,7 @@ dofile("/cavebot/clear_tile.lua")
 dofile("/cavebot/tasker.lua")
 -- main cavebot file, must be last
 dofile("/cavebot/cavebot.lua")
+dofile("/cavebot/depositor_helper.lua")
 
 setDefaultTab(targetingTab)
 TargetBot = {} -- global namespace

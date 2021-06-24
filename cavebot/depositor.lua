@@ -81,11 +81,16 @@ CaveBot.Extensions.Depositor.setup = function()
     	    if not name:find("depot") and not name:find("your inbox") then
     	        for _, item in pairs(container:getItems()) do
     	            local id = item:getId()
-					if table.find(lootTable, id) then
-						local index = getStashingIndex(id) or item:isStackable() and 1 or 0
-						CaveBot.StashItem(item, index, destination)
-						return "retry"
+					local storeGold = CaveBot.deposit.gold(id)
+					local storePotion = CaveBot.deposit.potion(id)
+					if (storeGold or storePotion) then
+						if table.find(lootTable, id) then
+							local index = getStashingIndex(id) or item:isStackable() and 1 or 0
+							CaveBot.StashItem(item, index, destination)
+							return "retry"
+						end
 					end
+
 				end
 			end
 		end
